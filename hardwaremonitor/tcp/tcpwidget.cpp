@@ -188,7 +188,7 @@ bool TCPWidget::startServer(quint16 port){
 
 
     if(!tcpProtocol->listen(QHostAddress::Any, port)){
-        QMessageBox::critical(this, "Error", tcpProtocol->errorString());
+        QMessageBox::critical(this, "Error", tcpProtocol->serverErrorString());
         return false;
     }
 

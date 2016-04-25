@@ -1,22 +1,23 @@
-#ifndef ENETWidget_H
-#define ENETWidget_H
+#ifndef UDTPWidget_H
+#define UDTPWidget_H
 
 #include <QWidget>
 
-#include "ui_enetwidget.h"
+#include "ui_udt.h"
 
-#include "enetprotocol.h"
+
+#include "udtsocket.h"
 
 
 namespace HEHUI {
 
-class ENETWidget : public QWidget
+class UDTWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    ENETWidget(QWidget *parent = 0);
-    ~ENETWidget();
+    UDTWidget(QWidget *parent = 0);
+    ~UDTWidget();
 
 
 private slots:
@@ -25,8 +26,7 @@ private slots:
         listen();
     }
     void on_toolButtonConnect_clicked(){
-//        connectToPeer();
-        connectionTest();
+        connectToPeer();
     }
     void on_toolButtonSend_clicked(){
         send();
@@ -37,28 +37,34 @@ private slots:
 
     void listen();
     void connectToPeer();
-    bool startENETServer(quint16 port);
+    bool startRUDPServer(quint16 port);
     void send();
     void clean();
 
 
 
 
-    void connected(quint32 peerID, const QString &address, quint16 peerPort);
+    void connected(int socket, const QString &peerAddress, quint16 peerPort);
     void signalConnectToPeerTimeout(const QHostAddress &peerAddress, quint16 peerPort);
-    void disconnected(quint32 peerID, const QString &address, quint16 peerPort);
+    void disconnected(const QHostAddress &peerAddress, quint16 peerPort);
+    void disconnected(int socket);
 
     void dataReceived(const QString &peerAddress, quint16 peerPort, const QByteArray &data);
 
-    void connectionTest();
+
 
 private:
-    Ui::ENETUIClass ui;
+    Ui::UDTClass ui;
 
-    ENETProtocolTest *enetProtocol;
-    quint32 m_peerID;
+
+
+
+    UDTProtocolTest *udtProtocol;
+
+    UDTSOCKET serverSocket, peerSockeet;
 
     bool isListening;
+
     bool isConnected;
 
     QHostAddress m_peerAddress;
@@ -66,17 +72,16 @@ private:
 
     quint16 localPort;
 
-    QDateTime startTime, endTime;
-    quint64 totalDataSize;
     quint16 m_receivedDataCount;
 
+    QDateTime startTime, endTime;
+    quint64 totalDataSize;
 
 
-
-
+    bool streamMode;
 
 
 };
 } //namespace HEHUI
 
-#endif // ENETWidget_H
+#endif // UDTWidget_H

@@ -23,7 +23,7 @@ class Settings : public SettingsBase, public Singleton<Settings>
         friend class Singleton<Settings>;
 
 public:
-        Settings(const QString fileBaseName = APP_NAME, const QString fileDirPath = QApplication::applicationDirPath(), QObject *parent = 0 );
+        Settings( const QString &appName = APP_NAME, const QString &appVersion = APP_VERSION, const QString fileBaseName = APP_NAME, const QString fileDirPath = QApplication::applicationDirPath(), QObject *parent = 0 );
 	~Settings();
 
 

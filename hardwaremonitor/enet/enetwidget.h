@@ -25,8 +25,7 @@ private slots:
         listen();
     }
     void on_toolButtonConnect_clicked(){
-//        connectToPeer();
-        connectionTest();
+        connectToPeer();
     }
     void on_toolButtonSend_clicked(){
         send();
@@ -37,20 +36,20 @@ private slots:
 
     void listen();
     void connectToPeer();
-    bool startENETServer(quint16 port);
+    bool startRUDPServer(quint16 port);
     void send();
     void clean();
 
 
 
 
-    void connected(quint32 peerID, const QString &address, quint16 peerPort);
+    void connected(quint32 m_peerID, const QString &address, quint16 peerPort);
     void signalConnectToPeerTimeout(const QHostAddress &peerAddress, quint16 peerPort);
-    void disconnected(quint32 peerID, const QString &address, quint16 peerPort);
+    void disconnected(quint32 m_peerID, const QString &address, quint16 peerPort);
 
     void dataReceived(const QString &peerAddress, quint16 peerPort, const QByteArray &data);
 
-    void connectionTest();
+
 
 private:
     Ui::ENETUIClass ui;

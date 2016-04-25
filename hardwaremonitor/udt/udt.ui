@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ENETUIClass</class>
- <widget class="QWidget" name="ENETUIClass">
+ <class>UDTClass</class>
+ <widget class="QWidget" name="UDTClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>722</width>
-    <height>528</height>
+    <width>817</width>
+    <height>380</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ENET</string>
+   <string>UDT</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -65,13 +65,13 @@
       <item row="1" column="3">
        <widget class="QSpinBox" name="spinBoxRemotePort">
         <property name="minimum">
-         <number>4000</number>
+         <number>3000</number>
         </property>
         <property name="maximum">
          <number>65535</number>
         </property>
         <property name="value">
-         <number>4000</number>
+         <number>3000</number>
         </property>
        </widget>
       </item>
@@ -173,7 +173,7 @@
          </sizepolicy>
         </property>
         <property name="minimum">
-         <number>4000</number>
+         <number>3000</number>
         </property>
         <property name="maximum">
          <number>65535</number>

@@ -11,7 +11,7 @@ TCP::TCP(QObject *parent) :
 
 }
 
-void TCP::processData(int socketID, QByteArray *data){
+void TCP::processData(quint32 socketID, QByteArray *data){
 
     QString address;
     quint16 port;

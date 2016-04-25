@@ -5,7 +5,7 @@
 
 
 #include "HHSharedCore/hcryptography.h"
-#include "HHSharedCore/hutilities.h"
+
 #include "enetwidget.h"
 
 
@@ -54,7 +54,7 @@ void ENETWidget::listen(){
     }
 
 
-    if(!startENETServer(ui.spinBoxLocalPort->value())){
+    if(!startRUDPServer(ui.spinBoxLocalPort->value())){
         return;
     }
 
@@ -109,7 +109,7 @@ void ENETWidget::connectToPeer(){
 
 }
 
-bool ENETWidget::startENETServer(quint16 port){
+bool ENETWidget::startRUDPServer(quint16 port){
 
     if(!enetProtocol){
         enetProtocol = new ENETProtocolTest(this);
@@ -259,44 +259,6 @@ void ENETWidget::dataReceived(const QString &peerAddress, quint16 peerPort, cons
 
 }
 
-void ENETWidget::connectionTest(){
-
-    m_peerAddress = QHostAddress(ui.lineEditIP->text());
-    m_peerPort = ui.spinBoxRemotePort->value();
-
-    if(m_peerAddress.isNull()){
-        QMessageBox::critical(this, "Error", "Invalid IP!");
-        ui.lineEditIP->setFocus();
-    }
-
-    if(!isListening){
-        ui.spinBoxLocalPort->setValue(ui.spinBoxLocalPort->value() + 1);
-        listen();
-    }
-    if(!isListening){
-        ui.spinBoxLocalPort->setValue(ui.spinBoxLocalPort->value() + 1);
-        listen();
-    }
-    if(!isListening){
-        ui.textBrowser->append("Failed to start ENET.");
-        return;
-    }
-
-    for(int i=0;i<100;i++){
-        if(!enetProtocol->connectToHost(m_peerAddress, m_peerPort, &m_peerID, 3000) ){
-            ui.textBrowser->append(QString("%1: %2").arg(i).arg(enetProtocol->errorString()));
-        }else{
-            ui.textBrowser->append(QString("%1: %2").arg(i).arg(m_peerID));
-            enetProtocol->disconnect(m_peerID);
-            m_peerID = 0;
-
-        }
-        //Utilities::msleep(100);
-        qApp->processEvents();
-    }
-
-
-}
 
 
 } //namespace HEHUI

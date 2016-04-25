@@ -19,7 +19,7 @@ public slots:
 
 
 private:
-    void processData(int socketID, QByteArray *data);
+    void processData(quint32 socketID, QByteArray *data);
 
 
     

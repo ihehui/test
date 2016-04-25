@@ -15,7 +15,9 @@ HHSharedLibs += HHSharedGUI \
     HHSharedCore \
     HHSharedNetwork \
     HHSharedUDT \
-    HHSharedENET
+    HHSharedENET \
+    HHSharedSysUtilities
+
 
 include(../HHSharedLibs.pri)
 
@@ -54,7 +56,8 @@ HEADERS += \
     udt/udtsocket.h \
     udt/udt.h \
     tcp/tcp.h \
-    tcp/tcpwidget.h
+    tcp/tcpwidget.h \
+    processmonitor/processmonitor.h
 
 SOURCES += \
     shared/settings.cpp \
@@ -66,7 +69,8 @@ SOURCES += \
     udt/udtsocket.cpp \
     udt/udt.cpp \
     tcp/tcp.cpp \
-    tcp/tcpwidget.cpp
+    tcp/tcpwidget.cpp \
+    processmonitor/processmonitor.cpp
 
 FORMS += \
     about/aboutdialog.ui \
